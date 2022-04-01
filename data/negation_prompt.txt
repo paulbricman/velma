@@ -1,0 +1,31 @@
+original: Tomatoes are disgusting.
+negation: Tomatoes are delicious.
+
+original: Solving differential equations is easy.
+negation: Solving differential equations is hard.
+
+original: Universal Basic Income is the answer to all our problems.
+negation: Universal Basic Income is not the answer to all our problems.
+
+original: Nobody knows how to code a proper website these days.
+negation: Everybody knows how to code a proper website these days.
+
+original: War is rarely the right choice.
+negation: War is often the right choice.
+
+original: Tackling climate change should not be a priority.
+negation: Tackling climate change should be a priority.
+
+original: Taking frequent breaks is useful for mental health.
+negation: Taking frequent breaks is useless for mental health.
+
+original: We should always trust experts more than social media.
+negation: We should never trust experts more than social media.
+
+original: Staying true to your values is not that hard.
+negation: Staying true to your values is not that easy.
+
+original: This is how I want news to look like.
+negation: This is not how I want news to look like.
+
+original:
