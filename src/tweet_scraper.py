@@ -16,7 +16,7 @@ class Tweet:
     date: str
     url: str
 
-def get_users(query, max_users=max_users):
+def get_users(query, max_users=10):
     '''
     USAGE:
     users = get_users('AI Alignment', max_tweets=100)
@@ -31,7 +31,7 @@ def get_users(query, max_users=max_users):
             break
     return list(users)
 
-def get_tweets(user, max_tweets_per_user=max_tweets_per_user):
+def get_tweets(user, max_tweets_per_user=10):
     '''
     USAGE:
     tweets = get_tweets('username', max_tweets=100)
