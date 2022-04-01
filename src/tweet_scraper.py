@@ -3,7 +3,7 @@ import csv
 import os
 import datetime
 from dataclasses import dataclass
-
+from tqdm import tqdm
 
 @dataclass(frozen=True, order=True)
 class Tweet:
@@ -24,7 +24,7 @@ def get_users(query, max_users=10):
     Returns: List of usernames (each username is str)
     '''
     users = set()
-    for i, tweet in enumerate(twitter.TwitterSearchScraper(query).get_items()):
+    for tweet in twitter.TwitterSearchScraper(query).get_items():
         if len(users) < max_users:
             users.add(tweet.user.username)
         else:
@@ -56,7 +56,7 @@ def get_tweets(user, max_tweets_per_user=10):
 
 def get_tweets_by_users(users, max_tweets_per_user=10):
     tweets = []
-    for user in users:
+    for user in tqdm(users):
         user_tweets = get_tweets(user, max_tweets_per_user=max_tweets_per_user)
         tweets.extend(user_tweets)
     return tweets
@@ -85,8 +85,8 @@ def writetocsv(filename, values, header=None):
 '''
 query = 'AI Alignment'
 
-max_users = 10
-max_tweets_per_user = 10
+max_users = 100
+max_tweets_per_user = 100
 users = get_users(query, max_users=max_users)
 tweets = get_tweets_by_users(users, max_tweets_per_user=max_tweets_per_user)
 current_time = get_current_time()
