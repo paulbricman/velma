@@ -40,7 +40,7 @@ def get_tweets(user, max_tweets_per_user=10):
     '''
     user_tweets = []
     for i, tweet in enumerate(twitter.TwitterUserScraper(user).get_items()):
-        if i < max_tweets:
+        if i < max_tweets_per_user:
             tweet = Tweet(id=tweet.id,
                         content=tweet.content,
                         username=tweet.user.username,
@@ -54,10 +54,10 @@ def get_tweets(user, max_tweets_per_user=10):
             break
     return user_tweets
 
-def get_tweets_by_users(users):
+def get_tweets_by_users(users, max_tweets_per_user=10):
     tweets = []
     for user in users:
-        user_tweets = get_tweets(user)
+        user_tweets = get_tweets(user, max_tweets_per_user=max_tweets_per_user)
         tweets.extend(user_tweets)
     return tweets
 
@@ -81,12 +81,12 @@ def writetocsv(filename, values, header=None):
             csv_writer.writerow(header)
         csv_writer.writerow(values)
 
-#Sample usage:
+#Sample Usage:
 '''
 query = 'AI Alignment'
+
 max_users = 10
 max_tweets_per_user = 10
-
 users = get_users(query, max_users=max_users)
 tweets = get_tweets_by_users(users, max_tweets_per_user=max_tweets_per_user)
 
