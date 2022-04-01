@@ -89,9 +89,9 @@ max_users = 10
 max_tweets_per_user = 10
 users = get_users(query, max_users=max_users)
 tweets = get_tweets_by_users(users, max_tweets_per_user=max_tweets_per_user)
-
+current_time = get_current_time()
 for tweet in tweets:
-    writetocsv(f'Tweet data - query={query} max_users={max_users} max_tweets_per_user={max_tweets_per_user} date={get_current_time()}.csv',
+    writetocsv(f'Tweet data - query={query} max_users={max_users} max_tweets_per_user={max_tweets_per_user} date={current_time}.csv',
     [tweet.id, tweet.username, tweet.content, tweet.user_bio, tweet.display_name, tweet.user_statuses_count, tweet.date, tweet.url],
     header=['id', 'username', 'tweet', 'user bio', 'display name', 'user statuses count', 'date', 'url'])
 '''
