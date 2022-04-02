@@ -74,6 +74,9 @@ def filter_negations(statement, candidates, nli=None, lm_tok=None, nli_threshold
         candidates (list): A list of candidates to filter.
         statement (str): The statement to negate.
         nli (str): The NLI model name.
+        lm_tok (str): The language model tokenizer name.
+        nli_threshold (float): The minimum NLI contradiction threshold.
+        edit_threshold (int): The maximum edit distance threshold.
 
     Returns:
         list: A list of filtered candidates.
