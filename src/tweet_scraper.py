@@ -18,10 +18,18 @@ class Tweet:
 
 def get_users(query, max_users=10):
     '''
-    USAGE:
-    users = get_users('AI Alignment', max_tweets=100)
-
-    Returns: List of usernames (each username is str)
+    Given a query, download a list of twitter users by searching for tweets with the given query. 
+    Keep adding users to a set until the specified number of max_users is reached.
+    
+    Args:
+        query (str): A search query on twitter (e.g. "AI alignment")
+        max_users (int): Maximum number of users to download
+        
+    Returns:
+        list: A list of str usernames 
+        
+    Usage:
+        users = get_users('AI Alignment', max_tweets=100)
     '''
     users = set()
     for tweet in twitter.TwitterSearchScraper(query).get_items():
@@ -33,11 +41,21 @@ def get_users(query, max_users=10):
 
 def get_tweets(user, max_tweets_per_user=10):
     '''
-    USAGE:
-    tweets = get_tweets('username', max_tweets=100)
-    for tweet in tweets:
-        print(tweet.id, tweet.display_name, tweet.user_bio, tweet.user_statuses_count, tweet.date, tweet.url)
+    Download a list of N tweets by a twitter user given a twitter username.
+    
+    Args:
+        user (str): A twitter username.
+        max_tweets_per_user (int): Maximum number of tweets to download
+        
+    Returns:
+        list: A list of tweets (Tweet objects, can be seen above)
+        
+    Usage:
+        tweets = get_tweets('username', max_tweets=100)
+        for tweet in tweets:
+            print(tweet.id, tweet.display_name, tweet.user_bio, tweet.user_statuses_count, tweet.date, tweet.url)
     '''
+    
     user_tweets = []
     for i, tweet in enumerate(twitter.TwitterUserScraper(user).get_items()):
         if i < max_tweets_per_user:
@@ -55,6 +73,18 @@ def get_tweets(user, max_tweets_per_user=10):
     return user_tweets
 
 def get_tweets_by_users(users, max_tweets_per_user=10):
+    '''
+    Given a list of str twitter usernames, download the last N (max_tweets_per_user) tweets by each user.
+    
+    Args:
+        users (list): A list of str twitter usernames.
+        max_tweets_per_user (int): Maximum number of tweets to download per user
+        
+    Returns:
+        list: A list of tweets (Tweet objects, can be seen above) by every user.
+        
+    '''
+    
     tweets = []
     for user in tqdm(users):
         user_tweets = get_tweets(user, max_tweets_per_user=max_tweets_per_user)
