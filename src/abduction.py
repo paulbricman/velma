@@ -1,4 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from src.util import softmax
 import torch
 
 
@@ -28,9 +29,8 @@ def infer(context, statements, model=None, tokenizer=None):
     priors = [lm_perplexity('', e, model, tokenizer) for e in statements]
     conditionals = [lm_perplexity(context, e, model, tokenizer)
                     for e in statements]
-    probs = torch.softmax(torch.tensor(
-        [conditionals[0] - priors[0], conditionals[1] - priors[1]]), dim=0)
-    print('(*)', priors, conditionals, probs)
+    probs = softmax([conditionals[0] - priors[0],
+                    conditionals[1] - priors[1]], 0.2)
     return probs
 
 
