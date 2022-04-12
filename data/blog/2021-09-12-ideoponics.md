@@ -1,0 +1,21 @@
+---
+layout: post
+age: 20.85
+title: ideoponics
+published: True
+---
+
+## ideoponics
+
+Digital gardens as we know them are nice, but what I'm really after is the digital equivalent of hyperefficient vertical farms, ruthlessly optimizing the memetic ecology of the mind just like soil sensors and nutrient dispensers nurture the plants. I want accurate ideological sensors which track how thought patterns are evolving, and targeted artificial interventions which help align the ecologies of mind to well-established best practices.
+
+This organic take on tools for thought _grew_ out of a recent exploration of the genetics-memetics metaphor. If population genetics mostly studies the evolutionary dynamics of animals and plants, memetics studies the evolutionary dynamics of thoughts, ideas, and behaviors. While having been thoroughly criticized as being overly reductive by anthropologists and sociologists alike, memetics has enjoyed a select place in the intellectual arsenal of a number of internet subcultures, ranging from [rationalists](https://www.lesswrong.com/tag/memetics) to [tools for thought enthusiasts](https://linus.coffee/note/move/) all the way to [hard science fiction circles](https://www.reddit.com/r/suggestmeabook/comments/cl3m81/novel_on_the_theme_of_infectious_ideas_and/). Framing ideas as individuals which need to survive, reproduce, and mutate as part of a broader network of ideologies definitely has a unique lure to it.
+
+Taking a step back, I was intrigued by _why_ I even thought it might be a good idea to further explore the genetics-memetics metaphor in the first place. Why did I decide to read a book on genetics despite so many competing titles? My guess is that, for one, the concrete analogies I've seen between the two fields have consistently proven extremely clean and consequential (e.g. gene/meme, ecology/ideology). Additionally, there's a surprising number of parallels between the two fields in relation with specific phenomena (e.g. selection, drift, flow). Together, the cleanliness of the connections between the fields and their very number might have signalled how fertile this broader metaphor can be as a highway for mental models. Those two factors indicated just how much potential for future analogizing there is based on a past sample. However, those possible explanations are something I only thought about after-the-fact while trying to make sense of my curiosity. And this is where things really start to get interesting: we might possess implicit intuitions on how to best breed populations of ideas in our minds. We might have the ingenuity of Mendel and Darwin evolutionary baked into the very way we think, helping us make such decisions without necessarily having to reflect on them in advance.
+
+This perspective of cognitively-inclined organisms as talented farmers of ideas on the ranch of mind lends itself quite well to a high-tech revamp. Our intuitions for cultivating ideas, together with insights from optimization theory, information science, and machine learning, can provide the _seedlings_ of a comprehensive cognitive infrastructure. We could have a constellation of tools which help us cultivate diverse, rich, and antifragile plantations of thought. On an individual level, this might translate into using tools like the [conceptarium](/thoughtware/conceptarium/) as an ideological greenhouse or the [ideoscope](/thoughtware/ideoscope/) as a sensor array for thought. On a community level, this might mean devising long-term policies such as connecting disparate academic fields through metaphors in order to reduce the segregation of ideas and increase the selective pressure they experience. We've barely scratched the surface of the surface in this regard, yet the potential upsides seem immense.
+
+Among other things, this perspective is a way of reaching a mindset for cognitive enhancement that's deeply compatible with the values of solarpunk: embracing organic metaphors, steering away from dystopian cyberpunk into intentional futures, and making use of enabling decentralized tooling. To top it off with some imagery, below is a beautiful space in Brussels which happened to fit this line of thinking quite nicely.
+
+![](/assets/img/brussels.jpg)
+_Gare Maritime (photo credits: author)_
