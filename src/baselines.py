@@ -25,7 +25,7 @@ def infer_nli(context, statements, nli=None, mode='relative'):
 
     if mode == 'relative':
         pairs = [(context, e) for e in statements]
-        scores = nli.predict(pairs)
+        scores = nli.predict(pairs, apply_softmax=True)
         scores = softmax([e[1] for e in scores], 0.2)
     elif mode == 'absolute':
         pair = (context, statements[0])
