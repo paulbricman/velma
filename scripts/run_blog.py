@@ -21,8 +21,9 @@ df = pd.read_csv('~/Downloads/valuations.csv')
 
 emb_model = SentenceTransformer('all-MiniLM-L6-v2')
 # nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
-lm_model = AutoModelForCausalLM.from_pretrained('distilgpt2')
-lm_tok = AutoTokenizer.from_pretrained('distilgpt2')
+lm_model = AutoModelForCausalLM.from_pretrained(
+    'gustavecortal/gpt-neo-2.7B-8bit')
+lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-2.7B')
 
 print('(*) Loaded models')
 

@@ -15,7 +15,8 @@ users = ['nabla_theta', 'slatestarcodex', 'stuhlmueller', 'ESYudkowsky', 'ben_j_
 
 emb_model = SentenceTransformer('all-MiniLM-L6-v2')
 # nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
-lm_model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-neo-2.7B')
+lm_model = AutoModelForCausalLM.from_pretrained(
+    'gustavecortal/gpt-neo-2.7B-8bit')
 lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-2.7B')
 print('(*) Loaded models')
 
