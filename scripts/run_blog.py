@@ -20,22 +20,19 @@ for filename in os.listdir('../data/blog/'):
 df = pd.read_csv('~/Downloads/valuations.csv')
 
 emb_model = SentenceTransformer('all-MiniLM-L6-v2')
-# nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
+nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
 lm_model = AutoModelForCausalLM.from_pretrained(
     'gustavecortal/gpt-neo-2.7B-8bit')
 lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-2.7B')
 
 print('(*) Loaded models')
 
-for approach in ['lm']:  # ['embs', 'nli_relative', 'nli_absolute', 'lm']:
+for approach in ['embs', 'nli_relative', 'nli_absolute', 'lm']:
     aggregate = []
 
     artifact_path = Path('..') / 'data' / \
         'blog_artifacts' / (approach + '.pkl')
     curr_df = df.copy()
-    # if artifact_path.exists():
-    #     aggregate = pickle.load(open(artifact_path, 'rb'))
-    #     curr_df = df.iloc[len(aggregate):]
 
     for idx, row in curr_df.iterrows():
         print(approach, idx)

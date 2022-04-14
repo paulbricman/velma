@@ -24,11 +24,11 @@ for user in tqdm(users):
     claim_tweets = df[df['username'] == user][pd.notna(
         df['extracted_claim'])][pd.notna(df['negated_claim'])]
 
-    for approach in ['lm']:  # ['embs', 'nli_relative', 'nli_absolute', 'lm']:
+    for approach in ['embs', 'nli_relative', 'nli_absolute', 'lm']:
         print(user, approach)
         aggregate = []
         artifact_path = Path(
-            '..') / 'data' / 'tweets_artifacts' / 'lm' / (user + '.pkl')
+            '..') / 'data' / 'tweets_artifacts' / approach / (user + '.pkl')
 
         for idx, row in claim_tweets.iterrows():
             other_tweets = df[df['username'] ==
