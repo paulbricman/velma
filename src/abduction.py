@@ -3,7 +3,7 @@ from src.util import softmax
 import torch
 
 
-def infer(context, statements, model=None, tokenizer=None):
+def infer(context, statements, model=None, tokenizer=None, return_components=False):
     '''
     Infers which statement is most likely to follow from the context, normalized by statement likelihood.
 
@@ -31,6 +31,11 @@ def infer(context, statements, model=None, tokenizer=None):
                     for e in statements]
     probs = softmax([conditionals[0] - priors[0],
                     conditionals[1] - priors[1]], 0.2)
+    if return_components:
+        return {
+            'priors': priors,
+            'conditionals': conditionals
+        }
     return probs
 
 

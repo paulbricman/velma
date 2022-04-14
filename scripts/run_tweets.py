@@ -14,30 +14,29 @@ users = ['nabla_theta', 'slatestarcodex', 'stuhlmueller', 'ESYudkowsky', 'ben_j_
          'ch402', 'willmacaskill', 'hardmaru', 'kenneth0stanley', 'RichardMCNgo']
 
 emb_model = SentenceTransformer('all-MiniLM-L6-v2')
-nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
-lm_model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-neo-1.3B')
-lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-1.3B')
+# nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
+lm_model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-neo-2.7B')
+lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-2.7B')
 print('(*) Loaded models')
 
-for user in tqdm(users[1:]):
+for user in tqdm(users):
     claim_tweets = df[df['username'] == user][pd.notna(
         df['extracted_claim'])][pd.notna(df['negated_claim'])]
 
-    for idx, row in claim_tweets.iterrows():
-        other_tweets = df[df['username'] ==
-                          user][df['extracted_claim'] != row['extracted_claim']]['tweet'].values
+    for approach in ['lm']:  # ['embs', 'nli_relative', 'nli_absolute', 'lm']:
+        print(user, approach)
+        aggregate = []
+        artifact_path = Path(
+            '..') / 'data' / 'tweets_artifacts' / 'lm' / (user + '.pkl')
 
-        selection = filter(
-            row['extracted_claim'], other_tweets, emb_model, top_k=5)
-        print('(*) Filtered paragraphs')
+        for idx, row in claim_tweets.iterrows():
+            other_tweets = df[df['username'] ==
+                              user][df['extracted_claim'] != row['extracted_claim']]['tweet'].values
 
-        for approach in ['embs', 'nli_relative', 'nli_absolute', 'lm']:
-            print(user, approach)
-            aggregate = []
+            selection = filter(
+                row['extracted_claim'], other_tweets, emb_model, top_k=5)
+            print('(*) Filtered paragraphs')
             probs = []
-
-            artifact_path = Path(
-                '..') / 'data' / 'tweets_artifacts' / approach / (user + '.pkl')
 
             for tweet in selection:
                 if approach == 'embs':
@@ -51,7 +50,7 @@ for user in tqdm(users[1:]):
                                         row['negated_claim']], mode='relative')[0]]
                 elif approach == 'lm':
                     probs += [infer(tweet, [row['extracted_claim'], row['negated_claim']],
-                                    model=lm_model, tokenizer=lm_tok)[0]]
+                                    model=lm_model, tokenizer=lm_tok, return_components=True)]
 
             aggregate += [probs]
-            pickle.dump(aggregate, open(artifact_path, 'wb'))
+        pickle.dump(aggregate, open(artifact_path, 'wb'))

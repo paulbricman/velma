@@ -20,20 +20,21 @@ for filename in os.listdir('../data/blog/'):
 df = pd.read_csv('~/Downloads/valuations.csv')
 
 emb_model = SentenceTransformer('all-MiniLM-L6-v2')
-nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
-lm_model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-neo-1.3B')
-lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-1.3B')
+# nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
+lm_model = AutoModelForCausalLM.from_pretrained('distilgpt2')
+lm_tok = AutoTokenizer.from_pretrained('distilgpt2')
 
 print('(*) Loaded models')
 
-for approach in ['nli_relative', 'nli_absolute', 'lm']:
+for approach in ['lm']:  # ['embs', 'nli_relative', 'nli_absolute', 'lm']:
     aggregate = []
 
-    artifact_path = Path('..') / 'data' / 'artifacts' / (approach + '.pkl')
+    artifact_path = Path('..') / 'data' / \
+        'blog_artifacts' / (approach + '.pkl')
     curr_df = df.copy()
-    if artifact_path.exists():
-        aggregate = pickle.load(open(artifact_path, 'rb'))
-        curr_df = df.iloc[len(aggregate):]
+    # if artifact_path.exists():
+    #     aggregate = pickle.load(open(artifact_path, 'rb'))
+    #     curr_df = df.iloc[len(aggregate):]
 
     for idx, row in curr_df.iterrows():
         print(approach, idx)
@@ -53,7 +54,7 @@ for approach in ['nli_relative', 'nli_absolute', 'lm']:
                                     row['negation']], mode='relative')[0]]
             elif approach == 'lm':
                 probs += [infer(paragraph, [row['statement'], row['negation']],
-                                model=lm_model, tokenizer=lm_tok)[0]]
+                                model=lm_model, tokenizer=lm_tok, return_components=True)]
 
         aggregate += [probs]
         pickle.dump(aggregate, open(artifact_path, 'wb'))
