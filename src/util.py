@@ -1,3 +1,4 @@
+from curses import resetty
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
 
@@ -10,7 +11,7 @@ def softmax(x, temperature=1.0):
     return e_x / e_x.sum()
 
 
-def filter(query, paragraphs, encoder=None, top_k=5):
+def filter(query, paragraphs, encoder=None, top_k=5, return_scores=False):
     '''
     Filter paragraphs by similarity to query.
 
@@ -29,7 +30,11 @@ def filter(query, paragraphs, encoder=None, top_k=5):
     query_emb = encoder.encode([query])[0]
     paragraph_embs = encoder.encode(paragraphs)
 
-    results = util.semantic_search(query_emb, paragraph_embs)[0]
-    results = [e['corpus_id'] for e in results[:top_k]]
+    raw_results = util.semantic_search(query_emb, paragraph_embs)[0]
+    results = [e['corpus_id'] for e in raw_results[:top_k]]
     results = [paragraphs[i] for i in results]
+
+    if return_scores:
+        return zip(paragraphs, [e['score'] for e in raw_results])
+
     return results
