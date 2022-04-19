@@ -29,8 +29,8 @@ def infer(context, statements, model=None, tokenizer=None, return_components=Fal
     priors = [lm_perplexity('', e, model, tokenizer) for e in statements]
     conditionals = [lm_perplexity(context, e, model, tokenizer)
                     for e in statements]
-    probs = softmax([conditionals[0] - priors[0],
-                    conditionals[1] - priors[1]], 0.2)
+    probs = softmax([conditionals[0],
+                    conditionals[1]], 0.2)
     if return_components:
         return {
             'priors': priors,
