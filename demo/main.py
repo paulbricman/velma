@@ -16,8 +16,8 @@ def load_models():
     emb_model = SentenceTransformer('all-MiniLM-L6-v2')
     nli_model = CrossEncoder('cross-encoder/nli-deberta-v3-base')
     lm_model = AutoModelForCausalLM.from_pretrained(
-        'EleutherAI/gpt-neo-1.3B')
-    lm_tok = AutoTokenizer.from_pretrained('EleutherAI/gpt-neo-1.3B')
+        'distilgpt2')
+    lm_tok = AutoTokenizer.from_pretrained('distilgpt2')
     return emb_model, nli_model, lm_model, lm_tok
 
 

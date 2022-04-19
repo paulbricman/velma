@@ -94,8 +94,6 @@ def filter_negations(statement, candidates, nli=None, lm_tok=None, nli_threshold
     nli_filtered = [e for e_id, e in enumerate(
         candidates) if scores[e_id][0] > nli_threshold]
 
-    print('(*)', scores, statement, candidates)
-
     # Batching would involve handling padding tokens properly...
     candidate_ids = [lm_tok(e, return_tensors='pt')['input_ids'][0].tolist()
                      for e in nli_filtered]
