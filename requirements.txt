@@ -111,7 +111,6 @@ Send2Trash==1.8.0
 sentence-transformers==2.2.0
 sentencepiece==0.1.95
 setuptools==58.0.4
-sip==4.19.13
 six==1.16.0
 smmap==3.0.5
 soupsieve==2.3.1
