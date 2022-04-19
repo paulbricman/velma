@@ -67,7 +67,7 @@ nest-asyncio==1.5.5
 nltk==3.6.7
 notebook==6.4.10
 numexpr==2.8.1
-numpy==1.21.2
+numpy
 olefile==0.46
 packaging==21.3
 pandas==1.4.1
